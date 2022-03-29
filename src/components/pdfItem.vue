@@ -31,10 +31,10 @@
           <div style="">
             <el-form style="">
               <el-form-item label="打印开始页">
-                <el-input v-model="startPage" type="number"></el-input>
+                <el-input-number v-model="startPage" :step="1" :min="1" :max="numPages"></el-input-number>
               </el-form-item>
               <el-form-item label="打印结束页">
-                <el-input v-model="endPage" type="number"></el-input>
+                <el-input-number v-model="endPage" :step="1" :min="1" :max="numPages"></el-input-number>
               </el-form-item>
             </el-form>
           </div>
