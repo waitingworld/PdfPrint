@@ -70,9 +70,11 @@ export default {
         }
         let loadingTask = pdf.createLoadingTask({url: this.file, CMapReaderFactory});
         loadingTask.promise.then(pdf => {
+          this.pdfInfo = pdf;
           this.numPages = pdf.numPages;
           this.startPage = 1
           this.endPage = parseInt(pdf.numPages)
+          this.$emit('setPdf',pdf)
         }).catch(err => {
           console.log(err)
         });
@@ -83,6 +85,7 @@ export default {
   },
   data() {
     return {
+      pdfInfo: {},
       loadedRatio: 0,//进度
       startPage: 0,//打印开始页码
       endPage: 0,//打印结束页码

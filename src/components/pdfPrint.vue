@@ -1,16 +1,18 @@
 <template>
   <div>
+    <merge-pdf :file-list="fileList" :show="showMergePdf" @close="showMergePdf=false"></merge-pdf>
     <div class="pdfClass">
-      <div style="display: flex;flex-direction: row;justify-content: center;">
-        <div>
-          <input id="choosePdfId" type="file" multiple accept="application/pdf" style="display: none"/>
+      <div style="display: flex;flex-direction: column;justify-content: flex-start;align-items: center;">
+        <div style="padding: 10px;">
+          <input id="choosePdfId" type="file" accept="application/pdf" style="display: none"/>
           <el-button type="primary" @click="choosePdfFile">选择pdf</el-button>
         </div>
+        <el-button type="primary" @click="showMergePdf=true">合并pdf</el-button>
       </div>
       <el-tabs :tab-position="'left'" type="border-card" v-show="fileList.length>0"
-               style="width: fit-content;margin-left: 20px;">
+               style="width: fit-content;margin-left: 20px;" >
         <el-tab-pane v-for="(file,index) in fileList" :key="index" :label="file.name">
-          <pdf-item :file="file.value"/>
+          <pdf-item :file="file.value" @setPdf="(pdf)=>{$set(fileList[index],'pdf',pdf)}"/>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -19,13 +21,15 @@
 
 <script>
 import PdfItem from "./pdfItem";
+import MergePdf from "./mergePdf";
 
 export default {
   name: 'PdfPrint',
-  components: {PdfItem},
+  components: {MergePdf, PdfItem},
   data() {
     return {
       fileList: [],
+      showMergePdf: false
     }
   },
   mounted() {
