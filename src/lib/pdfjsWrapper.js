@@ -149,9 +149,8 @@ export default function (PDFJS) {
           if (pageNumberOnly !== undefined && pageNumberOnly.length > 0) {
             for (var pageNumberKey in pageNumberOnly) {
               let pageNumber = pageNumberOnly[pageNumberKey]
-              debugger
               if (pageNumber === 0) {
-                allPages[pageNumberKey] = await pdfDoc.getPage(pageNumberOnly[pageNumberOnly.length-1]).then(function (page) {
+                allPages[pageNumberKey] = await pdfDoc.getPage(pageNumberOnly[pageNumberOnly.length - 1]).then(function (page) {
                   var viewport = page.getViewport({scale: 1});
                   printContainerElement.appendChild(win.document.createElement('canvas'));
                   var printCanvasElt = printContainerElement.appendChild(win.document.createElement('canvas'));
@@ -247,9 +246,9 @@ export default function (PDFJS) {
         if (canceling)
           return;
         canceling = true;
-        pdfRender.cancel().catch(function (err) {
-          emitEvent('error', err);
-        });
+        // pdfRender.cancel().catch(function (err) {
+        //   emitEvent('error', err);
+        // });
         return;
       }
 
