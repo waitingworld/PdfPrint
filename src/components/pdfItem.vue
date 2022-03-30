@@ -41,12 +41,13 @@
               </el-form-item>
             </el-form>
           </div>
-          <div style="display: flex;">
-            <el-button-group>
-              <el-button round type="primary" id="page1" @click="doublePrint('1')">双面打印(正面)</el-button>
-              <el-button round type="success" id="page2" @click="doublePrint('2')" v-show="showSecondFlag">双面打印(反面)
-              </el-button>
-            </el-button-group>
+          <div style="display: flex;flex-direction: column;justify-content: space-between;align-items: center;align-content: center;height: 90px;">
+              <div>
+                <el-button round type="primary" id="page1" @click="doublePrint('1')">双面打印(正面)</el-button>
+              </div>
+              <div>
+                <el-button round type="success" id="page2" @click="doublePrint('2')" >双面打印(反面)</el-button>
+              </div>
           </div>
         </div>
       </div>
