@@ -85,6 +85,12 @@ export default {
     },
     ///id:只是为了将canvas做个标记(一个pdf分解成多张canvas图片,canvasid="id-页码")，区分不同pdf,后面可以根据id找到对应的pdf,
     loadPDF(id) {
+      this.loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
       this.tableData.forEach((file, index) => {
         //用 promise 获取页面
         let canvasid = '';
@@ -176,6 +182,8 @@ export default {
         doc.addImage(canvas_1Url, 'JPEG', 0, 0, imgWidth, imgHeight);
       })
       doc.save('合并后的文件.pdf');
+      this.loading.close();
+      this.$emit('close')
     }
   }
 }
