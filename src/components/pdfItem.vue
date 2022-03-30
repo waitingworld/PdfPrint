@@ -43,8 +43,8 @@
           </div>
           <div style="display: flex;">
             <el-button-group>
-              <el-button round type="primary" id="page1" @click="doublePrint('1')">双面打印1</el-button>
-              <el-button round type="success" id="page2" @click="doublePrint('2')" v-show="showSecondFlag">双面打印2
+              <el-button round type="primary" id="page1" @click="doublePrint('1')">双面打印(正面)</el-button>
+              <el-button round type="success" id="page2" @click="doublePrint('2')" v-show="showSecondFlag">双面打印(反面)
               </el-button>
             </el-button-group>
           </div>
