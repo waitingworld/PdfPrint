@@ -41,7 +41,8 @@
           <div style="display: flex;">
             <el-button-group>
               <el-button round type="primary" id="page1" @click="doublePrint('1')">双面打印1</el-button>
-              <el-button round type="success" id="page2" @click="doublePrint('2')">双面打印2</el-button>
+              <el-button round type="success" id="page2" @click="doublePrint('2')" v-show="showSecondFlag">双面打印2
+              </el-button>
             </el-button-group>
           </div>
         </div>
@@ -68,13 +69,14 @@ export default {
         if (!this.file) {
           return
         }
+        this.showSecondFlag = false
         let loadingTask = pdf.createLoadingTask({url: this.file, CMapReaderFactory});
         loadingTask.promise.then(pdf => {
           this.pdfInfo = pdf;
           this.numPages = pdf.numPages;
           this.startPage = 1
           this.endPage = parseInt(pdf.numPages)
-          this.$emit('setPdf',pdf)
+          this.$emit('setPdf', pdf)
         }).catch(err => {
           console.log(err)
         });
@@ -85,6 +87,7 @@ export default {
   },
   data() {
     return {
+      showSecondFlag: false,
       pdfInfo: {},
       loadedRatio: 0,//进度
       startPage: 0,//打印开始页码
@@ -114,11 +117,13 @@ export default {
 
       if (type === '1') {
         console.log(page1)
-        this.$refs.pdf.print(100, page1)
+        this.$refs.pdf.print(600, page1)
+        this.showSecondFlag = true
       } else if (type === '2') {
         console.log(page2)
         alert('偶数页打印结束后,且短边翻转后点击确定')
-        this.$refs.pdf.print(100, page2)
+        this.$refs.pdf.print(600, page2)
+        this.showSecondFlag = false
       }
 
     },
