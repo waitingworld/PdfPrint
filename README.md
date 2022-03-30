@@ -1,7 +1,9 @@
 # pdf_print
 
 > pdf打印工具,实现指定打印范围,一键双面打印,不再需要输入倒数奇偶
+
 > pdf合并工具,实现指定pdf合并范围进行合并
+
 > 二次开发注意:
   将src/lib/pdfjsWrapper.js文件替换掉node_modules\vue-pdf\src\pdfjsWrapper.js
 
