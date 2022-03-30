@@ -36,6 +36,9 @@
               <el-form-item label="打印结束页">
                 <el-input-number v-model="endPage" :step="1" :min="1" :max="numPages"></el-input-number>
               </el-form-item>
+              <el-form-item label="清晰度(越大生成越慢)">
+                <el-input-number v-model="dpi" :step="1" :min="50" :max="1200"></el-input-number>
+              </el-form-item>
             </el-form>
           </div>
           <div style="display: flex;">
@@ -87,6 +90,7 @@ export default {
   },
   data() {
     return {
+      dpi: 600,
       showSecondFlag: false,
       pdfInfo: {},
       loadedRatio: 0,//进度
@@ -125,12 +129,12 @@ export default {
 
       if (type === '1') {
         console.log(page1)
-        this.$refs.pdf.print(600, page1)
+        this.$refs.pdf.print(this.dpi, page1)
         this.showSecondFlag = true
       } else if (type === '2') {
         console.log(page2)
-        alert('偶数页打印结束后,且短边翻转后点击确定')
-        this.$refs.pdf.print(600, page2)
+        alert('第一次打印结束后,短边翻转后,点击确定')
+        this.$refs.pdf.print(this.dpi, page2)
         this.showSecondFlag = false
       }
 
