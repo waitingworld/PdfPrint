@@ -105,9 +105,17 @@ export default {
       let page2 = []
       for (let i = parseInt(this.startPage); i < parseInt(parseInt(this.endPage) + 1); i++) {
         if (i % 2 === 0) {
-          page1.push(i)
+          if (this.startPage % 2 == 0) {
+            page2.push(i)
+          } else {
+            page1.push(i)
+          }
         } else {
-          page2.push(i)
+          if (this.startPage % 2 == 0) {
+            page1.push(i)
+          } else {
+            page2.push(i)
+          }
         }
       }
       if (page2.length > page1.length && page2.length !== 1) {
@@ -117,12 +125,12 @@ export default {
 
       if (type === '1') {
         console.log(page1)
-        this.$refs.pdf.print(600, page1)
+        // this.$refs.pdf.print(600, page1)
         this.showSecondFlag = true
       } else if (type === '2') {
         console.log(page2)
         alert('偶数页打印结束后,且短边翻转后点击确定')
-        this.$refs.pdf.print(600, page2)
+        // this.$refs.pdf.print(600, page2)
         this.showSecondFlag = false
       }
 

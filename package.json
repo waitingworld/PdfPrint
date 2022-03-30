@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "element-ui": "^2.15.6",
+    "jspdf": "^2.5.1",
     "pdf-to-base64": "^1.0.3",
     "vue": "^2.5.2",
     "vue-pdf": "^4.3.0",
