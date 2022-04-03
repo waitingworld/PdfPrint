@@ -97,22 +97,14 @@ export default {
         let idTemplate = 'pdf_' + id + '-'+index;
         let pageNum = file.endPage - file.startPage + 1;
         this.pageNum_all += pageNum;
-        //根据页码创建画布
-        this.createSeriesCanvas(pageNum, idTemplate);
-        //将pdf渲染到画布上去
         for (let i = file.startPage; i <= file.endPage; i++) {
           canvasid = idTemplate + i;
+          //根据页码创建画布
+          this.createPdfContainer(canvasid, 'pdfClass');
+          //将pdf渲染到画布上去
           this.renderPDF(file.pdf, i, canvasid);
         }
       })
-    },
-    //创建和pdf页数等同的canvas数
-    createSeriesCanvas(num, template) {
-      let id = '';
-      for (let j = 1; j <= num; j++) {
-        id = template + j;
-        this.createPdfContainer(id, 'pdfClass');
-      }
     },
     //创建
     createPdfContainer(id, className) {
